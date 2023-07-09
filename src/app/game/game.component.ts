@@ -29,9 +29,8 @@ takeCard() {
   this.currentCard= this.game.stack.pop();
   console.log(this.currentCard);
   this.pickCardAnimation = true;
-
-  console.log('New Card:' + this.currentCard);
-  console.log('Game is', this.game);
+this.game.currentPlayer++;
+this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
 
   setTimeout(()=>{
     if (this.currentCard !== undefined) {
@@ -47,7 +46,9 @@ openDialog(): void {
   const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
   dialogRef.afterClosed().subscribe(name=> {
+    if (name && name.length > 0) {
     this.game.players.push(name);
+  }
   });
 }
 }
