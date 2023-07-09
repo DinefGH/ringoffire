@@ -20,7 +20,6 @@ ngOnInit(): void {
 
 newGame() {
 this.game = new Game();
-console.log(this.game);
 }
 
 takeCard() {
@@ -29,9 +28,15 @@ takeCard() {
   console.log(this.currentCard);
   this.pickCardAnimation = true;
 
+  console.log('New Card:' + this.currentCard);
+  console.log('Game is', this.game);
+
   setTimeout(()=>{
+    if (this.currentCard !== undefined) {
+      this.game.playedCards.push(this.currentCard);
+      }
     this.pickCardAnimation = false;
-  },1500);
+  },1250);
 }
 }
 }
